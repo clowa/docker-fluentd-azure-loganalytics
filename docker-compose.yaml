@@ -1,0 +1,11 @@
+version: "3.1"
+
+services:
+  web:
+    build: .
+    image: clowa/fluentd-azure-loganalytics
+    restart: always
+    ports:
+      - 24224:24224
+    volumes:
+      - ./fluent.conf:/fluentd/etc/fluent.conf
