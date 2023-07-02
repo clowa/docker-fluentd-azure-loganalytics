@@ -1,4 +1,6 @@
-FROM fluent/fluentd:v1.15-debian-1
+ARG fluentd_version=v1.16
+
+FROM fluent/fluentd:${fluentd_version}-debian-1
 
 # Use root account to use apt
 USER root
@@ -27,7 +29,7 @@ RUN buildDeps="sudo make gcc g++ libc-dev" \
  && rm -rf /tmp/* /var/tmp/* /usr/lib/ruby/gems/*/cache/*.gem
 
 VOLUME /fluentd/etc/fluent.conf
-COPY entrypoint.sh /bin/
-RUN ["chmod", "+x", "/bin/entrypoint.sh"]
+COPY --chmod=555 entrypoint.sh /bin/
+RUN ["/bin/entrypoint.sh"]
 
 USER fluent
