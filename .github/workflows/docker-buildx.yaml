@@ -4,6 +4,8 @@ on:
     types:
       - base-image-update
   push:
+    branches-ignore:
+      - dependabot/**
 
 env:
   image: ${{ secrets.DOCKER_USERNAME }}/fluentd-azure-loganalytics
