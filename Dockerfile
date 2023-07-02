@@ -29,7 +29,7 @@ RUN buildDeps="sudo make gcc g++ libc-dev" \
  && rm -rf /tmp/* /var/tmp/* /usr/lib/ruby/gems/*/cache/*.gem
 
 VOLUME /fluentd/etc/fluent.conf
-COPY --chmod=555 entrypoint.sh /bin/
-RUN ["/bin/entrypoint.sh"]
+COPY --chmod=750 entrypoint.sh /bin/
+CMD ["/bin/entrypoint.sh"]
 
 USER fluent
